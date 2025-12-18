@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="CSS/home.css">
+<title>嚕咪美學｜美甲．韓式水飛梭．美甲教學</title>
+<script src="home_01.js"></script>
+</head>
+<body class="back-color">
+ 	 <h1 class="page-title">測試網頁</h1>
+ 	 <nav class="navbar">	<!-- nav：用來包含網頁的導覽連結，常見於網站選單、導航列、側邊選單、頁腳快速連結 -->
+    	<ul>
+	        <li><a href="Home.html">首頁</a></li>
+	        <li><a href="Manicure_service.html">美甲服務</a></li>
+	        <li><a href="#">韓式水飛梭</a></li>
+	        <li><a href="#">課程教學</a></li>
+	        <li><a href="#">關於我們</a></li>
+	        <li><a href="#">聯絡方式</a></li>
+    	</ul>
+	</nav>
+	<!-- 首頁內容 -->
+	<div class="home-content">
+        <section class="services">
+		  <h2>服務項目</h2>
+		  <div class="service-list">
+		  	<div class="service">
+				<h3>💅 美甲設計</h3>
+		      	<p>客製化設計，展現獨特風格</p>
+		    </div>
+		    <div class="service">
+		      	<h3>💧 韓式水飛梭</h3>
+		      	<p>深層清潔，打造水潤光澤肌</p>
+		    </div>
+		    <div class="service">
+		      	<h3>🎓 美甲教學</h3>
+		      	<p>專業師資，陪你踏上美業之路</p>
+		    </div>
+		    <div class="service">
+		      	<h3>💬 售後服務</h3>
+		      	<p>有問題隨時聯絡我們，專業協助你解決</p>
+		    </div>
+		  </div>
+		</section>
+		<section class="gallery">
+		    <h2>作品展示</h2>
+		    <div class="carousel-container">
+		        <button class="prev">&#10094;</button>
+		        <div class="carousel">
+		            <img src="IMG/line_oa_chat_250818_095451.jpg" alt="美甲作品1">
+		            <img src="IMG/line_oa_chat_250818_091332.jpg" alt="美甲作品2">
+		            <img src="IMG/S__123486216.jpg" alt="美甲作品3">
+		            <img src="IMG/S__123486220_0.jpg" alt="美甲作品4">
+		            <img src="IMG/S__124387336_0.jpg" alt="美甲作品5">
+		            <img src="IMG/S__124403721.jpg" alt="美甲作品6">
+		        </div>
+		        <button class="next">&#10095;</button>
+		    </div>
+		</section>
+		
+		
+		
+		<section class="promo">
+		    <h2>本月優惠</h2>
+		    <p>
+		        ✨ <strong>1+1 美甲優惠</strong> ✨<br/>
+		        單色 or 貓眼 💅<br/>
+		        搭配「卸甲」或「純保養」<br/>
+		        <span class="price">💖 只要 NT$888 💖</span><br/>
+		        📌 名額有限，快快預約！
+		    </p>
+		    <a href="reservation.html" class="btn">立即搶優惠</a><br/>
+		</section>
+    </div>
+	
+	<footer class="footer">
+	    <div class="footer-contact">
+	      <h4>聯絡我們</h4>
+	      <p>📍 中山捷運站6號出口走路4分鐘</p>
+	      <p>📞 0912-345-678</p>
+	      <p>📩 Test_Web@rumibeauty.com</p>
+	    </div>
+	</footer>
+
+</body>
+</html>
