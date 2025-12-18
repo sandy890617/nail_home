@@ -272,49 +272,79 @@ img {
     height: auto;
 }
 
-/* --- 響應式優化 (手機端) --- */
+/* --- 響應式優化 (手機端 600px 以下) --- */
 @media (max-width: 600px) {
-    /* 1. 標題縮小，避免換行太亂 */
+    /* 1. 標題與頁面間距：讓頂部更透氣 */
     .page-title {
-        font-size: 1.4rem;
-        padding: 15px 10px;
+        font-size: 24px !important; /* 修正原本 50px 太大的問題 */
+        margin-top: 30px;
+        margin-bottom: 20px;
+        padding: 0 15px;
+        line-height: 1.3;
     }
 
-    /* 2. 導覽列優化：讓選單看起來像乾淨的按鈕 */
+    /* 2. 導覽列優化：改為網格佈局，視覺更整齊 */
     .navbar ul {
-        display: flex;
-        flex-wrap: wrap; /* 自動換行 */
-        justify-content: center;
-        padding: 10px 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 一列顯示三個按鈕 */
+        gap: 8px;
+        padding: 10px 15px;
     }
 
     .navbar li {
-        margin: 5px;
+        margin: 0; /* 清除原本的 margin */
     }
 
     .navbar a {
-        font-size: 0.9rem;
-        padding: 5px 10px;
-        background: #f0f0f0; /* 給按鈕一點背景色 */
-        border-radius: 20px;
+        font-size: 14px;
+        padding: 8px 5px;
+        background: #fff; /* 淺色按鈕感 */
+        border: 1px solid #eee;
+        display: block; /* 撐開點擊區域 */
+        text-align: center;
     }
 
-    /* 3. 服務項目卡片：確保左右有留白 */
+    /* 3. 服務項目：增加內距，不要貼邊 */
     .home-content {
-        padding: 0 20px;
+        padding: 0 15px; /* 增加螢幕兩側留白 */
     }
 
     .service {
-        width: 100%; /* 手機上一列只放一個 */
-        margin-bottom: 20px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 增加陰影更有質感 */
+        width: 100%; /* 強制單欄顯示 */
+        max-width: none;
+        padding: 20px;
+        margin-bottom: 15px;
     }
 
-    /* 4. 作品展示圖片：確保寬度撐滿但不過大 */
+    .service h3 {
+        font-size: 18px;
+    }
+
+    /* 4. 本月優惠 (Promo) 優化 */
+    .promo {
+        padding: 25px 20px;
+        width: 90%; /* 寬度佔螢幕 90% */
+        box-sizing: border-box; /* 確保 padding 不會撐破寬度 */
+    }
+
+    .promo h2 {
+        font-size: 24px;
+    }
+
+    /* 5. 作品展示：手機上建議改為垂直排列或較大的單張滑動 */
+    .carousel {
+        flex-direction: column; /* 手機上改為一張一張垂直排，展示效果最好 */
+        align-items: center;
+    }
+
     .carousel img {
-        width: 100%;
+        width: 90% !important; /* 讓圖片寬一點 */
         height: auto;
-        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .prev, .next {
+        display: none; /* 如果改為垂直排列，就隱藏左右箭頭 */
     }
 }
 
