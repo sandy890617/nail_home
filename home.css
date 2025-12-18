@@ -266,5 +266,38 @@
     display: block; /* 永遠顯示箭頭 */
 }
 
+/* 基礎設定：讓圖片不會超出容器 */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 針對手機裝置 (螢幕寬度小於 768px) */
+@media (max-width: 768px) {
+    .navbar ul {
+        flex-direction: column; /* 如果你用 Flexbox，改為垂直排列 */
+        text-align: center;
+    }
+
+    .service-list {
+        display: block; /* 讓服務卡片一個接一個往下排 */
+    }
+
+    .service {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .page-title {
+        font-size: 1.5rem; /* 縮小標題字體 */
+    }
+}
+
+.service-list {
+    display: flex;
+    flex-wrap: wrap; /* 重要：寬度不夠時自動換行 */
+    justify-content: space-around;
+}
+
 .prev { left: 10px; }
 .next { right: 10px; }
