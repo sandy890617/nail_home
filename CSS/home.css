@@ -1,0 +1,407 @@
+@charset "UTF-8";
+
+.back-color {
+    background-color: #FFF5EE;	/* 背景顏色 */ 
+}
+
+/*  只讓首頁內容置中 */
+.home-content {
+    display: flex;				/* 彈性盒子，適應不同螢幕尺寸和顯示設備而生的佈局模式 */
+    flex-direction: column;     /* 垂直排列，從上到下排列 */
+    justify-content: center;    /* 垂直置中，控制主軸方向的對齊 */
+    align-items: center;        /* 水平置中 */
+    min-height: 70vh;          /* 滿版高度；100vh = 100% 視窗高度 */
+    text-align: center;
+}
+
+/* 標題 */ 
+.page-title{
+	text-align: center;       /* 置中 */
+    color: #000000;           /* 粉紅色文字 */
+    font-size: 50px;          /* 字體大小 */
+    font-family: "Microsoft JhengHei", sans-serif; /* 中文字體：微軟正黑體 */
+    margin-top: 50px;         /* 距離頁面頂部 */
+}
+
+
+/* 導覽列基本樣式 */
+.navbar {
+    background-color: #F5F5DC;   /* 米白背景 */
+    padding: 10px 0;			 /* 上下內距各10公分 左右0公分(沒有空間) */
+}
+
+/* 取消預設樣式，橫向排列 */
+.navbar ul {
+    list-style-type: none;		/* 移除項目前的圓點符號 */
+    margin: 0;					/* 移除外距，避免多餘空白 */
+    padding: 0;					/* 移除內距，項目緊貼容器 */
+    display: flex;              /* 橫向排列 */
+    justify-content: center;    /* 水平置中 */
+}
+
+/* 每個項目 */
+.navbar li {
+    margin: 0 15px;	/* margin：外邊距 || 0：上下外距 || 15：左右外距 */
+}
+
+/* 連結樣式 */
+.navbar a {
+    text-decoration: none;       /* 移除底線 */
+    color: #333;                 /* 文字顏色 */
+    font-size: 18px;			 /* 文字大小 */
+    font-family: "Microsoft JhengHei", sans-serif;	/* 字體 */ 
+    padding: 8px 12px;
+    border-radius: 5px;			 /* 圓角 */
+    transition: background 0.3s, color 0.3s;	
+    /* 
+    	transition：有過度動畫
+    	background 0.3s：背景顏色 (background) 在改變時，會用 0.3 秒 平滑地過渡
+    	color 0.3s：文字顏色 (color) 在改變時，也會用 0.3 秒 過渡
+     */
+}
+
+/* 滑鼠移過效果 */
+.navbar a:hover {
+    background-color: #FF69B4;   /* 粉紅背景 */
+    color: white;                /* 白字 */
+}
+
+
+/* 頁腳整體 */
+.footer {
+    background-color: #F5F5DC; /* 米白 */
+    padding: 40px 20px;
+    font-family: "Microsoft JhengHei", sans-serif;
+    color: #333;
+}
+
+/* 內容分區 */
+.footer-container {
+    display: flex;		/* 讓內容可以彈性排列 */
+    justify-content: space-between;	/* 在水平方向分散對齊，左右兩端貼齊，中間平均分開 */
+    flex-wrap: wrap;	/* 當空間不足時，自動換行 */
+    max-width: 1000px;
+    margin: 0 auto;	 	/* 左右自動置中，讓區塊在頁面正中間 */
+}
+
+/* 區塊標題 */
+.footer h3, .footer h4 {
+    color: #FF69B4; /* 粉色 */
+    margin-bottom: 15px;	/* 每個標題下方留 15px 間距，避免文字與下面元素太貼 */
+}
+
+/* 快速連結 */
+.footer-links ul {
+    list-style: none;	/* 移除項目前的圓點符號 */
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    text-decoration: none;	/* 移除連結底線，讓文字看起來更乾淨 */
+    color: #333;
+    transition: color 0.3s;	/* 當文字顏色改變時，用 0.3 秒平滑過渡 */
+}
+
+.footer-links a:hover {
+    color: #FF69B4;
+}
+
+/* 聯絡資訊 */
+.footer-contact p {
+    margin: 5px 0;
+}
+
+
+.images {
+    display: flex;        /* 讓圖片排成一列 */
+    gap: 10px;            /* 圖片間距 */
+}
+
+.images img {
+    width: 200px;         /* 固定寬度 */
+    height: 200px;        /* 固定高度 */
+    object-fit: cover;    /* 保持比例裁切圖片，避免變形 */
+    border-radius: 20px;  /* 可選，圓角美化 */
+}
+
+/* 服務項目標題 */
+.services h2 {
+    text-align: center;
+    font-size: 32px;
+    color: #FF69B4; /* 粉色 */
+    margin-bottom: 30px;
+}
+
+/* 服務列表 - Flex 水平排列 */
+.service-list {
+    display: flex;
+    justify-content: center;  /* 水平置中 */
+    gap: 30px;                /* 卡片間距 */
+    flex-wrap: wrap;           /* 小螢幕自動換行 */
+}
+
+/* 每個服務卡片 */
+.service {
+    background-color: #fff;       /* 白色卡片 */
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* 微陰影 */
+    padding: 25px;
+    width: 300px;                 /* 卡片寬度 */
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* 滑鼠移上效果 */
+.service:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* 卡片標題 */
+.service h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #FF69B4;
+}
+
+/* 卡片文字 */
+.service p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.promo {
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    padding: 20px 60px; /* 上下左右適中 */
+    max-width: 600px;
+    margin: 20px auto;
+    border-radius: 25px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+
+    display: flex;
+    flex-direction: column;  /* 讓內容垂直排列 */
+    justify-content: center; /* 垂直置中 */
+    align-items: center;     /* 水平置中 */
+    text-align: center;      /* 文字置中 */
+}
+
+.promo h2 {
+    font-size: 32px;
+    margin: 0 0 20px 0;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.promo p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #fff;
+    margin: 0; /* 取消段落多餘空白 */
+}
+
+.promo .price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.promo .btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background-color: #ff6f91;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.promo .btn:hover {
+    background-color: #ff3f72;
+    transform: translateY(-3px);
+}
+
+.gallery {
+    max-width: 1000px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+}
+
+.carousel {
+    display: flex;         /* 必須使用 flex */
+    gap: 20px;
+    overflow-x: auto;      /* 必須允許橫向捲動，JS 才能控制 */
+    scroll-behavior: smooth; 
+    padding: 20px 0;
+    scrollbar-width: none;  /* 隱藏捲動條 (Firefox) */
+    -ms-overflow-style: none;
+}
+
+.carousel img {
+    width: 250px;          /* 固定寬度，不要讓它變大 */
+    height: 250px;         /* 固定高度變成正方形 */
+    flex-shrink: 0;        /* 防止被擠壓 */
+    object-fit: cover;     /* 保持圖片比例裁切 */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;         /* 隱藏捲動條 (Chrome/Safari) */
+}
+
+
+
+/* 左右箭頭 */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255,255,255,0.8);
+    border: none;
+    font-size: 30px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: block; /* 永遠顯示箭頭 */
+}
+
+/* 基礎設定：讓圖片不會超出容器 */
+img {
+    max-width: 100%;
+    height: auto;
+}
+/* --- 響應式優化 (手機端 600px 以下) --- */
+@media (max-width: 600px) {
+    /* 1. 頁面大標題：適度縮小，增加呼吸感 */
+    .page-title {
+        font-size: 26px !important;
+        margin: 30px 0 20px 0;
+        padding: 0 10px;
+        line-height: 1.4;
+    }
+
+    /* 2. 導覽列：改為兩列排版，按鈕更明顯好按 */
+    .navbar ul {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 手機端一列兩個按鈕最平衡 */
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .navbar li {
+        margin: 0;
+    }
+
+    .navbar a {
+        font-size: 15px;
+        padding: 12px 5px;
+        background: #ffffff;
+        border: 1px solid #ffe4e1; /* 淡淡的粉色邊框 */
+        display: block;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .service-list {
+        display: grid;
+        /* 使用 minmax 確保寬度不會過小，並保持 2 欄 */
+        grid-template-columns: repeat(2, minmax(0, 1fr)); 
+        gap: 10px;           /* 縮小間距，爭取空間 */
+        padding: 0 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .service {
+        width: 100% !important; 
+        box-sizing: border-box;
+        /* 1. 大幅縮減上下內距，這是消除留白的關鍵 */
+        padding: 10px 5px;   
+        margin-bottom: 0;
+        border-radius: 10px;
+        background: #ffffff;
+        box-shadow: 0 2px 8px rgba(255, 105, 180, 0.06);
+        
+        /* 2. 取消固定高度，改為由內容撐開，但設定最小高度確保整齊 */
+        height: auto;         
+        min-height: 75px;    /* 根據內容調整，75px 通常剛好容納兩行文字 */
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center; 
+        align-items: center;
+    }
+
+    /* 縮小標題字體，並強制不換行或限制大小 */
+    .service h3 {
+        font-size: 14px;        /* 再次縮小字體 */
+        margin-bottom: 5px;
+        white-space: nowrap;    /* 強制標題不換行，避免擠壓 */
+        overflow: hidden;
+        text-overflow: ellipsis; /* 如果標題太長顯示 ... */
+    }
+
+    /* 縮小並調整描述文字 */
+    .service p {
+        font-size: 11px;        /* 縮小描述文字 */
+        line-height: 1.4;
+        color: #777;
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;  /* 最多顯示兩行文字，多餘的隱藏 */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    /* 4. 本月優惠：寬度調整，避免滿版 */
+    .promo {
+        width: 90%;
+        margin: 40px auto;
+        padding: 30px 20px;
+        border-radius: 30px;
+    }
+
+    /* 1. 將作品容器改為兩欄網格 */
+    .carousel {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 強制兩欄並列 */
+        gap: 10px;           /* 圖片之間的間隙 */
+        padding: 0 15px;     /* 容器左右留白，避免圖片貼邊 */
+        flex-direction: row; /* 覆蓋掉之前的 column 設定 */
+    }
+
+    /* 2. 調整圖片大小：讓它自動適應欄位寬度 */
+    .carousel img {
+        width: 100% !important; 
+        height: auto;        /* 保持比例，避免變形 */
+        max-width: none;     /* 移除之前的 320px 限制 */
+        aspect-ratio: 1 / 1; /* 建議：強制圖片變成正方形，視覺最整齊 */
+        object-fit: cover;   /* 裁剪多餘部分以填滿正方形 */
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        margin-bottom: 0;    /* 由 gap 控制間距，移除 margin */
+    }
+
+    /* 3. 隱藏左右箭頭（既然已經並列顯示了） */
+    .prev, .next {
+        display: none;
+    }
+}
+
+
+
+.prev { left: 10px; }
+.next { right: 10px; }
