@@ -236,21 +236,33 @@
 
 .carousel-container {
     position: relative;
-    overflow: hidden; /* 隱藏滾動條 */
     width: 100%;
 }
 
 .carousel {
-    display: flex;
-    gap: 10px;
-    scroll-behavior: smooth;
+    display: flex;         /* 必須使用 flex */
+    gap: 20px;
+    overflow-x: auto;      /* 必須允許橫向捲動，JS 才能控制 */
+    scroll-behavior: smooth; 
+    padding: 20px 0;
+    scrollbar-width: none;  /* 隱藏捲動條 (Firefox) */
+    -ms-overflow-style: none;
 }
 
 .carousel img {
-    width: 200px;
-    height: auto;
-    flex-shrink: 0;
+    width: 250px;          /* 固定寬度，不要讓它變大 */
+    height: 250px;         /* 固定高度變成正方形 */
+    flex-shrink: 0;        /* 防止被擠壓 */
+    object-fit: cover;     /* 保持圖片比例裁切 */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
+
+.carousel::-webkit-scrollbar {
+    display: none;         /* 隱藏捲動條 (Chrome/Safari) */
+}
+
+
 
 /* 左右箭頭 */
 .prev, .next {
@@ -273,85 +285,123 @@ img {
 }
 /* --- 響應式優化 (手機端 600px 以下) --- */
 @media (max-width: 600px) {
-    /* 1. 標題與頁面間距：讓頂部更透氣 */
+    /* 1. 頁面大標題：適度縮小，增加呼吸感 */
     .page-title {
-        font-size: 24px !important; /* 修正原本 50px 太大的問題 */
-        margin-top: 30px;
-        margin-bottom: 20px;
-        padding: 0 15px;
-        line-height: 1.3;
+        font-size: 26px !important;
+        margin: 30px 0 20px 0;
+        padding: 0 10px;
+        line-height: 1.4;
     }
 
-    /* 2. 導覽列優化：改為網格佈局，視覺更整齊 */
+    /* 2. 導覽列：改為兩列排版，按鈕更明顯好按 */
     .navbar ul {
         display: grid;
-        grid-template-columns: repeat(3, 1fr); /* 一列顯示三個按鈕 */
-        gap: 8px;
-        padding: 10px 15px;
+        grid-template-columns: repeat(2, 1fr); /* 手機端一列兩個按鈕最平衡 */
+        gap: 10px;
+        padding: 15px;
     }
 
     .navbar li {
-        margin: 0; /* 清除原本的 margin */
+        margin: 0;
     }
 
     .navbar a {
-        font-size: 14px;
-        padding: 8px 5px;
-        background: #fff; /* 淺色按鈕感 */
-        border: 1px solid #eee;
-        display: block; /* 撐開點擊區域 */
+        font-size: 15px;
+        padding: 12px 5px;
+        background: #ffffff;
+        border: 1px solid #ffe4e1; /* 淡淡的粉色邊框 */
+        display: block;
         text-align: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
 
-    /* 3. 服務項目：增加內距，不要貼邊 */
-    .home-content {
-        padding: 0 15px; /* 增加螢幕兩側留白 */
+    .service-list {
+        display: grid;
+        /* 使用 minmax 確保寬度不會過小，並保持 2 欄 */
+        grid-template-columns: repeat(2, minmax(0, 1fr)); 
+        gap: 10px;           /* 縮小間距，爭取空間 */
+        padding: 0 10px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .service {
-        width: 100%; /* 強制單欄顯示 */
-        max-width: none;
-        padding: 20px;
-        margin-bottom: 15px;
-    }
-
-    .service h3 {
-        font-size: 18px;
-    }
-
-    /* 4. 本月優惠 (Promo) 優化 */
-    .promo {
-        padding: 25px 20px;
-        width: 90%; /* 寬度佔螢幕 90% */
-        box-sizing: border-box; /* 確保 padding 不會撐破寬度 */
-    }
-
-    .promo h2 {
-        font-size: 24px;
-    }
-
-    /* 5. 作品展示：手機上建議改為垂直排列或較大的單張滑動 */
-    .carousel {
-        flex-direction: column; /* 手機上改為一張一張垂直排，展示效果最好 */
+        width: 100% !important; 
+        box-sizing: border-box;
+        /* 1. 大幅縮減上下內距，這是消除留白的關鍵 */
+        padding: 10px 5px;   
+        margin-bottom: 0;
+        border-radius: 10px;
+        background: #ffffff;
+        box-shadow: 0 2px 8px rgba(255, 105, 180, 0.06);
+        
+        /* 2. 取消固定高度，改為由內容撐開，但設定最小高度確保整齊 */
+        height: auto;         
+        min-height: 75px;    /* 根據內容調整，75px 通常剛好容納兩行文字 */
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center; 
         align-items: center;
     }
 
-    .carousel img {
-        width: 90% !important; /* 讓圖片寬一點 */
-        height: auto;
-        margin-bottom: 15px;
+    /* 縮小標題字體，並強制不換行或限制大小 */
+    .service h3 {
+        font-size: 14px;        /* 再次縮小字體 */
+        margin-bottom: 5px;
+        white-space: nowrap;    /* 強制標題不換行，避免擠壓 */
+        overflow: hidden;
+        text-overflow: ellipsis; /* 如果標題太長顯示 ... */
+    }
+
+    /* 縮小並調整描述文字 */
+    .service p {
+        font-size: 11px;        /* 縮小描述文字 */
+        line-height: 1.4;
+        color: #777;
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;  /* 最多顯示兩行文字，多餘的隱藏 */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
     
+    /* 4. 本月優惠：寬度調整，避免滿版 */
+    .promo {
+        width: 90%;
+        margin: 40px auto;
+        padding: 30px 20px;
+        border-radius: 30px;
+    }
+
+    /* 1. 將作品容器改為兩欄網格 */
+    .carousel {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 強制兩欄並列 */
+        gap: 10px;           /* 圖片之間的間隙 */
+        padding: 0 15px;     /* 容器左右留白，避免圖片貼邊 */
+        flex-direction: row; /* 覆蓋掉之前的 column 設定 */
+    }
+
+    /* 2. 調整圖片大小：讓它自動適應欄位寬度 */
+    .carousel img {
+        width: 100% !important; 
+        height: auto;        /* 保持比例，避免變形 */
+        max-width: none;     /* 移除之前的 320px 限制 */
+        aspect-ratio: 1 / 1; /* 建議：強制圖片變成正方形，視覺最整齊 */
+        object-fit: cover;   /* 裁剪多餘部分以填滿正方形 */
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        margin-bottom: 0;    /* 由 gap 控制間距，移除 margin */
+    }
+
+    /* 3. 隱藏左右箭頭（既然已經並列顯示了） */
     .prev, .next {
-        display: none; /* 如果改為垂直排列，就隱藏左右箭頭 */
+        display: none;
     }
 }
 
-.service-list {
-    display: flex;
-    flex-wrap: wrap; /* 重要：寬度不夠時自動換行 */
-    justify-content: space-around;
-}
+
 
 .prev { left: 10px; }
 .next { right: 10px; }
