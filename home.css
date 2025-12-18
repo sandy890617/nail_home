@@ -272,24 +272,49 @@ img {
     height: auto;
 }
 
-/* 針對手機裝置 (螢幕寬度小於 768px) */
-@media (max-width: 768px) {
-    .navbar ul {
-        flex-direction: column; /* 如果你用 Flexbox，改為垂直排列 */
-        text-align: center;
+/* --- 響應式優化 (手機端) --- */
+@media (max-width: 600px) {
+    /* 1. 標題縮小，避免換行太亂 */
+    .page-title {
+        font-size: 1.4rem;
+        padding: 15px 10px;
     }
 
-    .service-list {
-        display: block; /* 讓服務卡片一個接一個往下排 */
+    /* 2. 導覽列優化：讓選單看起來像乾淨的按鈕 */
+    .navbar ul {
+        display: flex;
+        flex-wrap: wrap; /* 自動換行 */
+        justify-content: center;
+        padding: 10px 0;
+    }
+
+    .navbar li {
+        margin: 5px;
+    }
+
+    .navbar a {
+        font-size: 0.9rem;
+        padding: 5px 10px;
+        background: #f0f0f0; /* 給按鈕一點背景色 */
+        border-radius: 20px;
+    }
+
+    /* 3. 服務項目卡片：確保左右有留白 */
+    .home-content {
+        padding: 0 20px;
     }
 
     .service {
-        width: 100%;
+        width: 100%; /* 手機上一列只放一個 */
         margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 增加陰影更有質感 */
     }
 
-    .page-title {
-        font-size: 1.5rem; /* 縮小標題字體 */
+    /* 4. 作品展示圖片：確保寬度撐滿但不過大 */
+    .carousel img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
     }
 }
 
