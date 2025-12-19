@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (heroSlides.length > 0) {
         let currentHeroIndex = 0;
-        const heroIntervalTime = 5000; // 大圖每 5 秒換一張
+        const heroIntervalTime = 3000; // 大圖每 5 秒換一張
 
         const showHeroSlide = (index) => {
             heroSlides.forEach(s => s.classList.remove('active'));
