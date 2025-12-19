@@ -1,17 +1,15 @@
 @charset "UTF-8";
 
-/* --- 1. 引入字體：襯線體(宋體)能增加沙龍專業感 --- */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap');
+/* --- 1. 引入字體 --- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:wght@700&display=swap');
 
-/* --- 2. 核心色調定義：奶茶燕麥色系 --- */
+/* --- 2. 核心色調與變數 --- */
 :root {
-    --primary-color: #8E7366;    /* 質感深褐：用於標題與重要文字 */
-    --accent-color: #B298DC;     /* 丁香紫：點綴色 */
-    --text-dark: #5D5451;        /* 暖灰褐：內文顏色 */
-    --bg-main: #F2EDE8;          /* 燕麥色主背景：溫暖不刺眼 */
-    --bg-card: #FBF9F7;          /* 淺米色卡片背景：比主背景亮一點點，做出層次 */
-    --navbar-bg: rgba(242, 237, 232, 0.85); /* 導覽列跟隨主色調 */
-    --footer-bg: #E8E0D9;        /* 頁腳深一點，穩住重心 */
+    --primary-color: #8E7366;
+    --accent-color: #B298DC;
+    --text-dark: #5D5451;
+    --bg-main: #F2EDE8;
+    --bg-card: #FBF9F7;
     --white: #FFFFFF;
 }
 
@@ -23,50 +21,43 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
+    overflow-x: hidden; /* 確保全域不會有橫向捲軸 */
 }
 
-/* ---- 4. 橫條LOGO  ------ */
+/* --- 4. 導覽列佈局 (全面流動化) --- */
 .navbar {
-    background: #FFFBF0; /* 奶茶米白色，稍微溫暖一點 */
-    padding: 20px 0; /* 縮小上下內距，避免橫條變得太胖 */
+    background: #FFFBF0;
+    padding: 15px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-    /* 增加上下兩條非常細的裝飾線 */
-    border-top: 1px solid #F0E6D2;
     border-bottom: 2px solid #EADED7; 
     box-shadow: 0 2px 10px rgba(142, 115, 102, 0.05);
-    
+    width: 100%;
 }
 
 .nav-container {
-    width: 95%; /* 讓它接近滿版，但左右留一點點呼吸空間 */
+    width: 92%;
     max-width: 1400px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Logo 在左，選單在右 */
     align-items: center;
 }
 
-/* --- 文字 LOGO 設計 --- */
+/* Logo 樣式：鎖定型態 */
 .logo {
     text-decoration: none;
-    display: flex;
-    align-items: flex-start;
-    line-height: 1.1;
-}
-
-/* 英文主標：使用精品感字體 */
-.logo {
     font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    letter-spacing: 4px;
-    color: #8E7366; /* 深褐奶茶色 */
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: #8E7366;
     font-weight: 700;
+    flex-shrink: 0;      /* 禁止被擠壓 */
+    white-space: nowrap; /* 禁止換行 */
 }
 
-
-/* 選單清單 */
+/* 電腦版選單 */
 .nav-links {
     display: flex;
     list-style: none;
@@ -76,21 +67,20 @@ body {
 }
 
 .nav-links li {
-    margin-left: 40px; /* 增加間距，讓它更有呼吸感 */
+    margin-left: 35px;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: #8E7366; /* 統一使用奶茶褐色 */
+    color: #8E7366;
     font-size: 15px;
     font-weight: 500;
-    letter-spacing: 2px; /* 增加字距，這是專業質感的關鍵 */
-    padding-bottom: 5px;
+    letter-spacing: 1px;
     position: relative;
+    padding-bottom: 5px;
     transition: color 0.3s ease;
 }
 
-/* 選單下方的小橫槓裝飾 */
 .nav-links a::after {
     content: '';
     position: absolute;
@@ -99,40 +89,238 @@ body {
     bottom: 0;
     left: 50%;
     background-color: #8E7366;
-    transition: all 0.3s ease;
+    transition: 0.3s ease;
     transform: translateX(-50%);
 }
 
 .nav-links a:hover::after {
-    width: 100%; /* 滑鼠移上去線條展開 */
+    width: 100%;
 }
 
-/* 立即預約：改為優雅的邊框按鈕感，而非厚重的實色 */
+/* 立即預約按鈕 */
 .nav-cta {
     border: 1px solid #8E7366;
     padding: 6px 20px !important;
-    border-radius: 0px; /* 根據圖二，方正一點或微圓角更有質感 */
+    border-radius: 0px;
     font-size: 14px;
-    transition: all 0.3s ease;
 }
 
 .nav-cta:hover {
     background-color: #8E7366;
     color: #FFF !important;
-    transform: none; /* 移除位移，保持穩定高級感 */
 }
-/* --- 5. 首頁內容與標題 --- */
+
+/* 漢堡按鈕：預設隱藏 */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 18px;
+    width: 25px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    z-index: 1100;
+}
+
+.menu-toggle .bar {
+    height: 3px;
+    width: 100%;
+    background-color: #8E7366;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+/* --- 大張跑馬燈容器 --- */
+.hero-carousel {
+    position: relative;
+    width: 100%;
+    height: 60vh; /* 在電腦端佔螢幕高度的 60% */
+    min-height: 300px;
+    overflow: hidden;
+    background-color: #E8E0D9; /* 載入前的緩衝色 */
+}
+
+.hero-track {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out; /* 淡入淡出效果 */
+    z-index: 1;
+}
+
+.hero-slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+.hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 關鍵：確保圖片填滿不變形 */
+}
+
+/* 左右箭頭 */
+.hero-prev, .hero-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 15px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 0 5px 5px 0;
+    backdrop-filter: blur(5px);
+}
+
+.hero-next {
+    right: 0;
+    border-radius: 5px 0 0 5px;
+}
+
+.hero-prev:hover, .hero-next:hover {
+    background: rgba(142, 115, 102, 0.6);
+}
+
+/* 下方圓點 */
+.hero-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: #8E7366;
+    width: 30px; /* 拉長效果，更有現代感 */
+    border-radius: 10px;
+}
+
+
+
+/* --- 5. 響應式優化 (核心修正點) --- */
+
+/* 平板與手機 (900px 以下切換為漢堡選單) */
+@media (max-width: 900px) {
+    .menu-toggle {
+        display: flex;
+        margin-left: auto; /* 強制靠右 */
+    }
+
+    .nav-links {
+        position: fixed;
+        right: -100%; /* 隱藏於右側 */
+        top: 0;
+        width: 260px; /* 側邊長條寬度 */
+        height: 100vh;
+        background-color: rgba(255, 251, 240, 0.98);
+        flex-direction: column;
+        justify-content: center;
+        transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        z-index: 1050;
+        box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+    }
+
+    .nav-links.active {
+        right: 0; /* 滑入 */
+    }
+
+    .nav-links li {
+        margin: 20px 0;
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a::after {
+        display: none; /* 手機版不使用下劃線動畫 */
+    }
+}
+
+/* 漢堡按鈕轉 X 動畫 */
+.menu-toggle.is-active .bar:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+}
+.menu-toggle.is-active .bar:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.is-active .bar:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+    .hero-carousel {
+        height: 40vh; /* 手機版縮小一點高度 */
+    }
+}
+
+
+/* 手機版細節 (600px 以下) */
+@media (max-width: 600px) {
+    .logo {
+        font-size: 22px; /* 手機端稍微縮小字體防止擁擠 */
+    }
+    
+    .page-title {
+        font-size: 28px !important;
+        margin-top: 40px;
+    }
+
+    .service-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 20px 15px;
+    }
+
+    .service {
+        width: 100% !important;
+        padding: 20px 10px;
+        border-radius: 15px;
+    }
+
+    .service h3 { font-size: 16px; }
+
+    .carousel img {
+        width: 100% !important;
+        aspect-ratio: 1 / 1;
+    }
+}
+
+/* --- 6. 其他組件 (首頁內容、服務、優惠) --- */
 .page-title {
     text-align: center;
     color: var(--primary-color);
     font-size: 40px;
     font-family: 'Noto Serif TC', serif;
     margin-top: 60px;
-    margin-bottom: 10px;
     letter-spacing: 5px;
 }
 
-/* --- 6. 服務項目區塊 --- */
 .service-list {
     display: flex;
     justify-content: center;
@@ -142,242 +330,50 @@ body {
 }
 
 .service {
-    background: var(--bg-card); /* 使用淺米色而非純白 */
+    background: var(--bg-card);
     border-radius: 24px;
     padding: 40px 25px;
     width: 280px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(142, 115, 102, 0.08); /* 暖色調陰影 */
-    transition: all 0.4s ease;
+    box-shadow: 0 10px 25px rgba(142, 115, 102, 0.08);
+    transition: 0.4s ease;
 }
 
 .service:hover {
     transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(142, 115, 102, 0.15);
 }
 
-.service h3 {
-    font-size: 22px;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    font-family: 'Noto Serif TC', serif;
-}
-
-/* --- 7. 本月優惠：深褐色對比色 --- */
 .promo {
     background: linear-gradient(135deg, #8E7366 0%, #B2988A 100%);
     color: #FFF;
-    padding: 60px 40px;
-    max-width: 750px;
+    padding: 60px 20px;
+    max-width: 700px;
     margin: 60px auto;
     border-radius: 35px;
     text-align: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
 
-.promo h2 {
-    color: #FFF;
-    font-family: 'Noto Serif TC', serif;
-    margin-bottom: 20px;
-}
-
-.promo .btn {
-    display: inline-block;
-    background: #FFF;
-    color: var(--primary-color);
-    padding: 14px 45px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: 25px;
-    transition: all 0.3s ease;
-}
-
-.promo .btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
-
-/* 圖片設定位置*/
-
-.carousel-container {
-    position: relative;
-    width: 100%;
-}
-
+.carousel-container { position: relative; width: 100%; }
 .carousel {
-    display: flex;         /* 必須使用 flex */
+    display: flex;
     gap: 20px;
-    overflow-x: auto;      /* 必須允許橫向捲動，JS 才能控制 */
-    scroll-behavior: smooth; 
-    padding: 20px 0;
-    scrollbar-width: none;  /* 隱藏捲動條 (Firefox) */
-    -ms-overflow-style: none;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 20px;
+    scrollbar-width: none;
 }
+.carousel::-webkit-scrollbar { display: none; }
 
 .carousel img {
-    width: 250px;          /* 固定寬度，不要讓它變大 */
-    height: 250px;         /* 固定高度變成正方形 */
-    flex-shrink: 0;        /* 防止被擠壓 */
-    object-fit: cover;     /* 保持圖片比例裁切 */
+    width: 250px;
+    height: 250px;
+    flex-shrink: 0;
+    object-fit: cover;
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.carousel::-webkit-scrollbar {
-    display: none;         /* 隱藏捲動條 (Chrome/Safari) */
-}
-
-/* 左右箭頭 */
-.prev, .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255,255,255,0.8);
-    border: none;
-    font-size: 30px;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 50%;
-    display: block; /* 永遠顯示箭頭 */
-}
-
-/* --- 9. 頁腳：深燕麥色 --- */
 .footer {
     background-color: var(--footer-bg);
-    color: var(--text-dark);
-    padding: 60px 20px;
-    border-top: 1px solid rgba(0,0,0,0.05);
+    padding: 40px 20px;
+    text-align: center;
 }
-
-.footer h3 {
-    color: var(--primary-color);
-    font-family: 'Noto Serif TC', serif;
-}
-/* 基礎設定：讓圖片不會超出容器 */
-img {
-    max-width: 100%;
-    height: auto;
-}
-/* --- 響應式優化 (手機端 600px 以下) --- */
-@media (max-width: 600px) {
-    /* 1. 頁面大標題：適度縮小，增加呼吸感 */
-    .page-title {
-        font-size: 26px !important;
-        margin: 30px 0 20px 0;
-        padding: 0 10px;
-        line-height: 1.4;
-    }
-
-    /* 2. 導覽列：改為兩列排版，按鈕更明顯好按 */
-    .navbar ul {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 手機端一列兩個按鈕最平衡 */
-        gap: 10px;
-        padding: 15px;
-    }
-
-    .navbar li {
-        margin: 0;
-    }
-
-    .navbar a {
-        font-size: 15px;
-        padding: 12px 5px;
-        background: #ffffff;
-        border: 1px solid #ffe4e1; /* 淡淡的粉色邊框 */
-        display: block;
-        text-align: center;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-
-    .service-list {
-        display: grid;
-        /* 使用 minmax 確保寬度不會過小，並保持 2 欄 */
-        grid-template-columns: repeat(2, minmax(0, 1fr)); 
-        gap: 10px;           /* 縮小間距，爭取空間 */
-        padding: 0 10px;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .service {
-        width: 100% !important; 
-        box-sizing: border-box;
-        /* 1. 大幅縮減上下內距，這是消除留白的關鍵 */
-        padding: 10px 5px;   
-        margin-bottom: 0;
-        border-radius: 10px;
-        background: #ffffff;
-        box-shadow: 0 2px 8px rgba(255, 105, 180, 0.06);
-        
-        /* 2. 取消固定高度，改為由內容撐開，但設定最小高度確保整齊 */
-        height: auto;         
-        min-height: 75px;    /* 根據內容調整，75px 通常剛好容納兩行文字 */
-        
-        display: flex;
-        flex-direction: column;
-        justify-content: center; 
-        align-items: center;
-    }
-
-    /* 縮小標題字體，並強制不換行或限制大小 */
-    .service h3 {
-        font-size: 14px;        /* 再次縮小字體 */
-        margin-bottom: 5px;
-        white-space: nowrap;    /* 強制標題不換行，避免擠壓 */
-        overflow: hidden;
-        text-overflow: ellipsis; /* 如果標題太長顯示 ... */
-    }
-
-    /* 縮小並調整描述文字 */
-    .service p {
-        font-size: 11px;        /* 縮小描述文字 */
-        line-height: 1.4;
-        color: #777;
-        margin: 0;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;  /* 最多顯示兩行文字，多餘的隱藏 */
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-    
-    /* 4. 本月優惠：寬度調整，避免滿版 */
-    .promo {
-        width: 90%;
-        margin: 40px auto;
-        padding: 30px 20px;
-        border-radius: 30px;
-    }
-
-    /* 1. 將作品容器改為兩欄網格 */
-    .carousel {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr); /* 強制兩欄並列 */
-        gap: 10px;           /* 圖片之間的間隙 */
-        padding: 0 15px;     /* 容器左右留白，避免圖片貼邊 */
-        flex-direction: row; /* 覆蓋掉之前的 column 設定 */
-    }
-
-    /* 2. 調整圖片大小：讓它自動適應欄位寬度 */
-    .carousel img {
-        width: 100% !important; 
-        height: auto;        /* 保持比例，避免變形 */
-        max-width: none;     /* 移除之前的 320px 限制 */
-        aspect-ratio: 1 / 1; /* 建議：強制圖片變成正方形，視覺最整齊 */
-        object-fit: cover;   /* 裁剪多餘部分以填滿正方形 */
-        border-radius: 12px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-        margin-bottom: 0;    /* 由 gap 控制間距，移除 margin */
-    }
-
-    /* 3. 隱藏左右箭頭（既然已經並列顯示了） */
-    .prev, .next {
-        display: none;
-    }
-}
-
-
-
-.prev { left: 10px; }
-.next { right: 10px; }
