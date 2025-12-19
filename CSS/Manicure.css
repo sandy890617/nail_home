@@ -489,8 +489,19 @@ body {
 
 @media (max-width: 1024px) {
     .grid {
-        grid-template-columns: repeat(3, 1fr); /* 平板一排 3 張 */
+        grid-template-columns: repeat(3, 1fr); /* 平板變一排 3 張 */
+        gap: 12px;
     }
+    
+    .color-gallery-container {
+        padding: 15px;
+        margin: 20px auto;
+    }
+
+    .detail-title {
+        font-size: 1.2rem;
+    }
+    
 }
 
 /* 平板與手機 (900px 以下切換為漢堡選單) */
@@ -558,6 +569,22 @@ body {
     .promo-content-row { flex-direction: column; text-align: center; }
     .promo-features li { font-size: 15px; }
     .price-value { font-size: 56px; }
+    
+    /* 作品照 */
+    .gallery-tabs {
+        flex-wrap: wrap; /* 按鈕太多時自動換行 */
+        gap: 8px;
+    }
+
+    .gallery-tab-btn {
+        padding: 8px 15px;
+        font-size: 14px;
+        flex: 1 1 calc(50% - 10px); /* 讓按鈕在平板/手機上一排兩個 */
+    }
+
+    .style-detail-card {
+        padding: 15px;
+    }
 }
 
 /* 手機版細節 (600px 以下) */
@@ -599,6 +626,35 @@ body {
         width: 100% !important;
         aspect-ratio: 1 / 1;
     }
+    
+    /* 作品網格改為一排 2 張 */
+    .grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px;
+    }
+
+    .color-item img {
+        height: 160px; /* 手機端縮短高度，比例更精緻 */
+    }
+
+    .color-item p {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .tag-group {
+        gap: 5px;
+    }
+
+    .tag {
+        padding: 4px 10px;
+        font-size: 12px;
+    }
+
+    .gallery-main-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -629,5 +685,13 @@ body {
         margin: 0 0 20px 0;
         font-size: 13px;
         padding: 0 10px;    /* 防止文字貼到邊緣 */
+    }
+    
+    .gallery-tab-btn {
+        flex: 1 1 100%; /* 極小螢幕按鈕全寬單列排 */
+    }
+
+    .color-item img {
+        height: 140px;
     }
 }
