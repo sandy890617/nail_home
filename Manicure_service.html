@@ -5,149 +5,291 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="CSS/Manicure.css">
 <title>嚕咪美學｜美甲．韓式水飛梭．美甲教學</title>
-
+<script src="JS/home_01.js"></script>
+<script src="JS/Manicure.js"></script>
 
 </head>
-
-<body class="back-color">
- 	 <h1 class="page-title">嚕咪美學｜美甲．韓式水飛梭．美甲教學</h1>
- 	 <nav class="navbar">	<!-- nav：用來包含網頁的導覽連結，常見於網站選單、導航列、側邊選單、頁腳快速連結 -->
-    	<ul>
-	        <li><a href="index.html">首頁</a></li>
-	        <li><a href="Manicure_service.html">美甲服務</a></li>
-	        <li><a href="#">韓式水飛梭</a></li>
-	        <li><a href="#">課程教學</a></li>
-	        <li><a href="#">關於我們</a></li>
-	        <li><a href="#">聯絡方式</a></li>
-    	</ul>
+<body >
+ 	 <nav class="navbar">
+	    <div class="nav-container">
+	        <a href="index.html" class="logo">嚕 咪 美 學</a>
+			
+			<!-- 手機/小螢幕版的"漢堡選單按鈕" -->
+	        <button class="menu-toggle" id="mobile-menu">
+	            <span class="bar"></span>	<!-- 漢堡的一條線 -->
+	            <span class="bar"></span>
+	            <span class="bar"></span>
+	        </button>
+	        
+	        <ul class="nav-links" id="nav-links">
+	            <li><a href="index.html">首頁</a></li>
+	            <li><a href="Manicure_service.html">美甲服務</a></li>
+	            <li><a href="#">韓式水飛梭</a></li>
+	            <li><a href="#">課程教學</a></li>
+	            <li><a href="#">關於我們</a></li>
+	            <li><a href="#" class="nav-cta">立即預約</a></li>
+	        </ul>
+    	</div>
 	</nav>
-	<!-- 美甲服務內容 -->
-	<div class="home-content">
-       <section class="price-section">
-		  <h2 class="title">價目表</h2>
-		  <div class="price-container">
-		    <!-- 左側：凝膠指甲 -->
-		    <div class="price-card">
-		      <h3>凝膠指甲</h3>
-		      <p class="note">（含修型、保養、加厚）</p>
-		      <table>
-		        <tr><th>款式</th><th>手部</th><th>足部</th></tr>
-		        <tr><td>單色</td><td>$950</td><td>$1100</td></tr>
-		        <tr><td>貓眼</td><td>$1050</td><td>$1200</td></tr>
-		        <tr><td>鏡面/法式</td><td>$1250</td><td>$1350</td></tr>
-		        <tr><td>自由發揮</td><td>$1300</td><td>$1400</td></tr>
-		        <tr><td>客帶圖</td><td>$1399 起</td><td>$1499 起</td></tr>
-		      </table>
-		    </div>
+	
+	
+	<!-- 美甲價目表 -->
+	<section class="price-container">
+	    <h2 class="section-title">服務價目表</h2>
+	
+	    <div class="price-tabs">
+	        <button class="tab-btn active" onclick="openTab(event, 'hand-service')">手部凝膠</button>
+	        <button class="tab-btn" onclick="openTab(event, 'foot-service')">足部凝膠</button>
+	        <button class="tab-btn" onclick="openTab(event, 'other-service')">其他項目</button>
+	    </div>
+	
+	    <div id="hand-service" class="tab-content active">
+	        <p class="price-notice">※ 以上項目均包含基礎保養、加厚，款式設計依複雜度另行報價</p>
+	        <div class="price-item">
+	            <span class="service-name">基礎單色</span>
+	            <span class="price-dots"></span>
+	            <span class="service-price">$ 950</span>
+	        </div>
+	        <div class="price-item">
+	            <span class="service-name">貓眼</span>
+	            <span class="price-dots"></span>
+	            <span class="service-price">$ 1,050</span>
+	        </div>
+	        <div class="price-item">
+	            <span class="service-name">法式 / 鏡面設計</span>
+	            <span class="price-dots"></span>
+	            <span class="service-price">$ 1,250</span>
+	        </div>
+	        <div class="price-item">
+	            <span class="service-name">自由發揮</span>
+	            <span class="price-dots"></span>
+	            <span class="service-price">$ 1,300</span>
+	        </div>
+	        <div class="price-item">
+	            <span class="service-name">帶圖款式</span>
+	            <span class="price-dots"></span>
+	            <span class="service-price">$ 1,399 up</span>
+	        </div>
+	    </div>
+	
+	    <div id="foot-service" class="tab-content">
+	        <p class="price-notice">※ 以上項目均包含基礎保養、加厚，款式設計依複雜度另行報價</p>
+	        <div class="price-item">
+	            <span class="service-name">單色凝膠</span>
+	            <span class="price-dots"></span>
+	            <span class="service-price">$ 1,100</span>
+	        </div>
+	        <div class="price-item">
+	            <span class="service-name">貓眼</span>
+	            <span class="price-dots"></span>
+	            <span class="service-price">$ 1,200</span>
+	        </div>
+	        <div class="price-item">
+	            <span class="service-name">法式 / 鏡面設計</span>
+	            <span class="price-dots"></span>
+	            <span class="service-price">$ 1,350</span>
+	        </div>
+	        <div class="price-item">
+	            <span class="service-name">自由發揮</span>
+	            <span class="price-dots"></span>
+	            <span class="service-price">$ 1,400</span>
+	        </div>
+	        <div class="price-item">
+	            <span class="service-name">帶圖款式</span>
+	            <span class="price-dots"></span>
+	            <span class="service-price">$ 1,499 up</span>
+	        </div>
+	    </div>
 		
-		    <!-- 右側：保養 / 卸甲 -->
-		    <div class="price-card">
-		      <h3>保養 / 卸甲</h3>
-		      <p class="note">（含修型、剪死皮）</p>
-		      <table>
-		        <tr><th>服務</th><th>純保養</th><th>續做</th><th>純卸甲</th></tr>
-		        <tr><td>本店卸甲</td><td>-</td><td>$150</td><td>$500</td></tr>
-		        <tr><td>他店卸甲</td><td>-</td><td>$300</td><td>$500</td></tr>
-		        <tr><td>高級保養</td><td>$700</td><td>+$300</td><td>+$300</td></tr>
-		      </table>
-		    </div>
-		  </div>
-		</section>
+		<!-- 卸甲/其他項目 -->
+	    <div id="other-service" class="tab-content">
+	        <div class="price-item">
+	            <span class="service-name">本店續做</span>
+	            <span class="price-dots"></span>
+	            <span class="service-price">$ 150</span>
+	        </div>
+	        <div class="price-item">
+	            <span class="service-name">他店續做</span>
+	            <span class="price-dots"></span>
+	            <span class="service-price">$ 300</span>
+	        </div>
+	        <div class="price-item">
+	            <span class="service-name">純卸甲</span>
+	            <span class="price-dots"></span>
+	            <span class="service-price">$ 500</span>
+	        </div>
+	        <div class="price-item">
+	            <span class="service-name">深層保養(手/腳)</span>
+	            <span class="price-dots"></span>
+	            <span class="service-price">$ 700</span>
+	        </div>
+	        <p class="price-notice-sub">（含修型/剪死皮/去角質/美白軟膜/手部按摩/護甲強化）</p>
+	    </div>
+	</section>
+	
+	<!-- 作品集 -->
+	<section class="color-gallery-container">
+	    <h2 class="gallery-main-title">款式作品集</h2>
+	
+	    <div class="gallery-tabs">
+	        <button class="gallery-tab-btn active" onclick="switchGallery(event, 'tab-single')">單色</button>
+	        <button class="gallery-tab-btn" onclick="switchGallery(event, 'tab-cat')">貓眼</button>
+	        <button class="gallery-tab-btn" onclick="switchGallery(event, 'tab-mirror')">鏡面</button>
+	        <button class="gallery-tab-btn" onclick="switchGallery(event, 'tab-custom')">自由發揮/帶圖</button>
+	    </div>
 		
+		<!-- 單色 -->
+	    <div id="tab-single" class="gallery-content active">
+	        <div class="style-detail-card">
+		        <div class="detail-header">
+		            <span class="detail-price-tag">單色：$ 950</span>
+		            <h3 class="detail-title">單色作品系列</h3>
+		        </div>
+		        
+		        <div class="target-audience">
+		            <p class="audience-label">適合對象：</p>
+		            <div class="tag-group">
+		                <span class="tag">美甲初體驗</span>
+		                <span class="tag">簡約耐看款</span>
+		                <span class="tag">視覺修長手指</span>
+		                <span class="tag">定期保養補色</span>
+		                <span class="tag">百搭不燒腦</span>
+		            </div>
+		        </div>
+		    </div>
+	        <div class="grid">
+	            <div class="color-item">
+	                <img src="Images/S__123486216.jpg" alt="HanHan 016" loading="lazy">
+	                <p>#HanHan 016 </p>
+	            </div>
+	            <div class="color-item">
+	                <img src="Images/S__123486216.jpg" alt="HanHan 016" loading="lazy">
+	                <p>#HanHan 016 </p>
+	            </div>
+	            <div class="color-item">
+	                <img src="Images/S__123486216.jpg" alt="HanHan 016" loading="lazy">
+	                <p>#HanHan 016 </p>
+	            </div>
+	            <div class="color-item">
+	                <img src="Images/S__123486216.jpg" alt="HanHan 016" loading="lazy">
+	                <p>#HanHan 016 </p>
+	            </div>
+	            <div class="color-item">
+	                <img src="Images/S__123486216.jpg" alt="HanHan 016" loading="lazy">
+	                <p>#HanHan 016 </p>
+	            </div>
+	        </div>
+	        <div class="grid">
+	            <div class="color-item">
+	                <img src="Images/S__123486216.jpg" alt="HanHan 016" loading="lazy">
+	                <p>#HanHan 016 </p>
+	            </div>
+	            <div class="color-item">
+	                <img src="Images/S__123486216.jpg" alt="HanHan 016" loading="lazy">
+	                <p>#HanHan 016 </p>
+	            </div>
+	            <div class="color-item">
+	                <img src="Images/S__123486216.jpg" alt="HanHan 016" loading="lazy">
+	                <p>#HanHan 016 </p>
+	            </div>
+	            <div class="color-item">
+	                <img src="Images/S__123486216.jpg" alt="HanHan 016" loading="lazy">
+	                <p>#HanHan 016 </p>
+	            </div>
+	            <div class="color-item">
+	                <img src="Images/S__123486216.jpg" alt="HanHan 016" loading="lazy">
+	                <p>#HanHan 016 </p>
+	            </div>
+	        </div>
+	    </div>
 		
-		<section class="color-gallery">
-		  <h1>單色作品_950元</h1>
-		  <div class="grid">
-		    <div class="color-item">
-		      <img src="Images/S__123486216.jpg" alt="#HanHan 016" loading="lazy">
-		      <p>HanHan 016</p>
+		<!-- 貓眼 -->
+	    <div id="tab-cat" class="gallery-content">
+	        <div class="style-detail-card">
+		        <div class="detail-header">
+		            <span class="detail-price-tag">貓眼：$ 1050</span>
+		            <h3 class="detail-title">單色作品系列</h3>
+		        </div>
+		        
+		        <div class="target-audience">
+		            <p class="audience-label">適合對象：</p>
+		            <div class="tag-group">
+		                <span class="tag">喜歡低調但又不想太普通</span>
+		                <span class="tag">上班也想有小心機的你</span>
+		                <span class="tag">第一次嘗試設計款的入門首選</span>
+		                <span class="tag">喜歡高級、微奢感風格的人</span>
+		                <span class="tag">拍照、約會、重要場合前</span>
+		            </div>
+		        </div>
 		    </div>
-		    
-		    <div class="color-item">
-		      <img src="Images/S__123486220_0.jpg" alt="#HanHan 016" loading="lazy">
-		      <p>HanHan 016</p>
-		    </div>
-		    
-		    <div class="color-item">
-		      <img src="Images/S__123486220_0.jpg" alt="#HanHan 016" loading="lazy">
-		      <p>HanHan 016</p>
-		    </div>
-		    
-		    <div class="color-item">
-		      <img src="Images/S__123486220_0.jpg" alt="#HanHan 016" loading="lazy">
-		      <p>HanHan 016</p>
-		    </div>
-		    
-		    <div class="color-item">
-		      <img src="Images/S__123486220_0.jpg" alt="#HanHan 016" loading="lazy">
-		      <p>HanHan 016</p>
-		    </div>
-		    
-		    <div class="color-item">
-		      <img src="Images/S__123486220_0.jpg" alt="#HanHan 016" loading="lazy">
-		      <p>HanHan 016</p>
-		    </div>
-		    
-		    <div class="color-item">
-		      <img src="Images/S__123486220_0.jpg" alt="#HanHan 016" loading="lazy">
-		      <p>HanHan 016</p>
-		    </div>
-		    
-		    <div class="color-item">
-		      <img src="Images/S__123486220_0.jpg" alt="#HanHan 016" loading="lazy">
-		      <p>HanHan 016</p>
-		    </div>
-		    
-		    <div class="color-item">
-		      <img src="Images/S__123486220_0.jpg" alt="#HanHan 016" loading="lazy">
-		      <p>HanHan 016</p>
-		    </div>
-		    
-		    <div class="color-item">
-		      <img src="Images/S__123486220_0.jpg" alt="#HanHan 016" loading="lazy">
-		      <p>HanHan 016</p>
-		    </div>
-		    
-		    <!-- 新增這顆按鈕 -->
-  			<div class="view-more-wrapper">
-			    <a href="monochrome.html" class="view-more-btn">觀看更多色號</a>
-			</div>
-		  </div>
-		</section>
-		
-			<!-- 放大視窗 Modal 他只能獨立在外面 -->
-			<div class="modal" id="previewModal">
-			  <div class="modal-content">
-			    <img id="modalImg" src="" alt="">
-			    <p id="modalText"></p>
-			  </div>
-			</div>
+	        <div class="grid">
+	            <div class="color-item">
+	                <img src="Images/S__123486220_0.jpg" alt="貓眼款式" loading="lazy">
+	                <p>#晶石貓眼 M02</p>
+	            </div>
+	            <div class="color-item">
+	                <img src="Images/S__123486220_0.jpg" alt="貓眼款式" loading="lazy">
+	                <p>#晶石貓眼 M02</p>
+	            </div>
+	            <div class="color-item">
+	                <img src="Images/S__123486220_0.jpg" alt="貓眼款式" loading="lazy">
+	                <p>#晶石貓眼 M02</p>
+	            </div>
+	            <div class="color-item">
+	                <img src="Images/S__123486220_0.jpg" alt="貓眼款式" loading="lazy">
+	                <p>#晶石貓眼 M02</p>
+	            </div>
+	            <div class="color-item">
+	                <img src="Images/S__123486220_0.jpg" alt="貓眼款式" loading="lazy">
+	                <p>#晶石貓眼 M02</p>
+	            </div>
+	        </div>
+	    </div>
+	
+	    <div id="tab-mirror" class="gallery-content">
+	        <div class="gallery-intro">
+	            <p><strong>適合對象：</strong>喜愛金屬光澤、個性感十足的派對焦點</p>
+	            <p class="gallery-price">服務價格：$ 1,250</p>
+	        </div>
+	        <div class="grid">
+	            </div>
+	    </div>
+	
+	    <div id="tab-custom" class="gallery-content">
+	        <div class="gallery-intro">
+	            <p><strong>適合對象：</strong>有心儀款式、想還原美照或由美甲師客製設計</p>
+	            <p class="gallery-price">服務價格：$ 1,300 - 1,499 up</p>
+	        </div>
+	        <div class="grid">
+	            </div>
+	    </div>
+	</section>
 
-		
-		
-		
-		<section class="promo">
-		    <h2>本月優惠</h2>
-		    <p>
-		        ✨ <strong>1+1 美甲優惠</strong> ✨<br/>
-		        單色 or 貓眼 💅<br/>
-		        搭配「卸甲」或「純保養」<br/>
-		        <span class="price">💖 只要 NT$888 💖</span><br/>
-		        📌 名額有限，快快預約！
-		    </p>
-		    <a href="reservation.html" class="btn">立即搶優惠</a><br/>
-		</section>
-    </div>
+	<!-- 放大視窗 Modal 他只能獨立在外面 -->
+	<div class="modal" id="previewModal">
+	  <div class="modal-content">
+	    <img id="modalImg" src="" alt="">
+	    <p id="modalText"></p>
+	  </div>
+	</div>
 	
 	<footer class="footer">
-	    <div class="footer-contact">
-	      <h4>聯絡我們</h4>
-	      <p>📍 中山捷運站6號出口走路4分鐘</p>
-	      <p>📞 0912-345-678</p>
-	      <p>📩 Test_Web@rumibeauty.com</p>
-	    </div>
+	  <div>
+	    <h4>聯絡我們</h4>
+	    
+	    <address>
+	      <p>
+	        <span class="icon">📍</span> 
+	        中山捷運站6號出口走路4分鐘
+	      </p>
+	      
+	      <p>
+	        <span class="icon">📩</span> 
+	        s100614290617@gmail.com
+	      </p>
+	    </address>
+	  </div>
 	</footer>
-	<script src="home_01.js"></script>
-	<script src="Manicure.js"></script>
+	
 </body>
 </html>
