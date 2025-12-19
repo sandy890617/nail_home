@@ -5,16 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 <link rel="stylesheet" href="CSS/home.css">
 <title>嚕咪美學｜美甲．韓式水飛梭．美甲教學</title>
-<script src="home_01.js"></script>
+<script src="JS/home_01.js"></script>
 </head>
 <body class="back-color">
- 	 <nav class="navbar">
+ 	<nav class="navbar">
 	    <div class="nav-container">
-	       <a href="Home.html" class="logo">
-            	嚕咪<span>美學</span>
-        	</a>
+	        <a href="Home.html" class="logo">嚕 咪 美 學</a>
+	
+	        <button class="menu-toggle" id="mobile-menu">
+	            <span class="bar"></span>
+	            <span class="bar"></span>
+	            <span class="bar"></span>
+	        </button>
 	        
-	        <ul class="nav-links">
+	        <ul class="nav-links" id="nav-links">
 	            <li><a href="Home.html">首頁</a></li>
 	            <li><a href="Manicure_service.html">美甲服務</a></li>
 	            <li><a href="#">韓式水飛梭</a></li>
@@ -22,31 +26,29 @@
 	            <li><a href="#">關於我們</a></li>
 	            <li><a href="#" class="nav-cta">立即預約</a></li>
 	        </ul>
-	    </div>
+    	</div>
 	</nav>
-	<!-- 首頁內容 -->
+	<!-- 圖片跑馬燈 -->
 	<div class="home-content">
-        <section class="services">
-		  <h2>服務項目</h2>
-		  <div class="service-list">
-		  	<div class="service">
-				<h3>💅 美甲設計</h3>
-		      	<p>客製化設計，展現獨特風格</p>
+        <div class="hero-carousel">
+		    <div class="hero-track">
+		        <div class="hero-slide active"><img src="Images/客廳.jpg" alt="舒服等候區"></div>
+		        <div class="hero-slide"><img src="Images/美甲位置.jpg" alt="美甲空間"></div>
+		        <div class="hero-slide"><img src="Images/廁所.png" alt="廁所"></div>
+		        <div class="hero-slide"><img src="Images/貓咪.png" alt="店貓"></div>
 		    </div>
-		    <div class="service">
-		      	<h3>💧 韓式水飛梭</h3>
-		      	<p>深層清潔，打造水潤光澤肌</p>
+		    
+		    <button class="hero-prev">&#10094;</button>
+		    <button class="hero-next">&#10095;</button>
+		    
+		    <!-- 跑馬燈下方圓點 -->
+		    <div class="hero-dots">
+		        <span class="dot active"></span>
+		        <span class="dot"></span>
+		        <span class="dot"></span>
+		        <span class="dot"></span>
 		    </div>
-		    <div class="service">
-		      	<h3>🎓 美甲教學</h3>
-		      	<p>專業師資，陪你踏上美業之路</p>
-		    </div>
-		    <div class="service">
-		      	<h3>💬 售後服務</h3>
-		      	<p>有問題隨時聯絡我們，專業協助你解決</p>
-		    </div>
-		  </div>
-		</section>
+		</div>
 		<section class="gallery">
 		    <h2>作品展示</h2>
 		    <div class="carousel-container">
