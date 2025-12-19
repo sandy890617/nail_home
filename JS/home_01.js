@@ -1,47 +1,122 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const carousel = document.querySelector('.carousel');
-    const prev = document.querySelector('.prev');
-    const next = document.querySelector('.next');
+    
+    // ==========================================
+    // 功能一：手機版漢堡選單控制 (點擊三條線)
+    // ==========================================
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
 
-    if (!carousel || !prev || !next) return; 
+    if (mobileMenu && navLinks) {
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenu.classList.toggle('is-active'); // 觸發三條線變 X 的動畫
+        });
 
-    const intervalTime = 3000; 
+        // 點擊選單內的連結後，自動收起選單
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenu.classList.remove('is-active');
+            });
+        });
+    }
 
-    // 動態取得捲動寬度 (一張圖片的寬度 + 間距)
-    const getScrollAmount = () => {
-        const firstImg = carousel.querySelector('img');
-        return firstImg ? firstImg.clientWidth + 20 : 270; 
-    };
+    // ==========================================
+    // 功能二：大張 Hero 跑馬燈 (紅框處)
+    // ==========================================
+    const heroSlides = document.querySelectorAll('.hero-slide');
+    const heroDots = document.querySelectorAll('.dot');
+    const heroNext = document.querySelector('.hero-next');
+    const heroPrev = document.querySelector('.hero-prev');
+    
+    if (heroSlides.length > 0) {
+        let currentHeroIndex = 0;
+        const heroIntervalTime = 5000; // 大圖每 5 秒換一張
 
-    // 手動點擊：左
-    prev.addEventListener('click', () => {
-        carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
-        resetAutoScroll();
-    });
-
-    // 手動點擊：右
-    next.addEventListener('click', () => {
-        carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
-        resetAutoScroll();
-    });
-
-    // 自動滑動邏輯
-    const startAutoScroll = () => {
-        return setInterval(() => {
-            const amount = getScrollAmount();
-            // 檢查是否到底了，到底就回開頭
-            if (carousel.scrollLeft + carousel.offsetWidth >= carousel.scrollWidth - 5) {
-                carousel.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
-                carousel.scrollBy({ left: amount, behavior: 'smooth' });
+        const showHeroSlide = (index) => {
+            heroSlides.forEach(s => s.classList.remove('active'));
+            heroDots.forEach(d => d.classList.remove('active'));
+            
+            currentHeroIndex = (index + heroSlides.length) % heroSlides.length;
+            heroSlides[currentHeroIndex].classList.add('active');
+            if (heroDots[currentHeroIndex]) {
+                heroDots[currentHeroIndex].classList.add('active');
             }
-        }, intervalTime);
-    };
+        };
 
-    let autoScroll = startAutoScroll();
+        // 自動播放大圖
+        let heroAutoTimer = setInterval(() => showHeroSlide(currentHeroIndex + 1), heroIntervalTime);
 
-    function resetAutoScroll() {
-        clearInterval(autoScroll);
-        autoScroll = startAutoScroll();
+        // 重設自動播放 (當手動點擊後重新計時)
+        const resetHeroTimer = () => {
+            clearInterval(heroAutoTimer);
+            heroAutoTimer = setInterval(() => showHeroSlide(currentHeroIndex + 1), heroIntervalTime);
+        };
+
+        if (heroNext) {
+            heroNext.addEventListener('click', () => {
+                showHeroSlide(currentHeroIndex + 1);
+                resetHeroTimer();
+            });
+        }
+
+        if (heroPrev) {
+            heroPrev.addEventListener('click', () => {
+                showHeroSlide(currentHeroIndex - 1);
+                resetHeroTimer();
+            });
+        }
+
+        // 圓點點擊
+        heroDots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => {
+                showHeroSlide(idx);
+                resetHeroTimer();
+            });
+        });
+    }
+
+    // ==========================================
+    // 功能三：下方作品集小輪播 (原本的功能)
+    // ==========================================
+    const carousel = document.querySelector('.carousel');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+
+    if (carousel && prevBtn && nextBtn) {
+        const carouselIntervalTime = 3000; 
+
+        const getScrollAmount = () => {
+            const firstImg = carousel.querySelector('img');
+            return firstImg ? firstImg.clientWidth + 20 : 270; 
+        };
+
+        prevBtn.addEventListener('click', () => {
+            carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+            resetCarouselAuto();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+            resetCarouselAuto();
+        });
+
+        const startCarouselAuto = () => {
+            return setInterval(() => {
+                const amount = getScrollAmount();
+                if (carousel.scrollLeft + carousel.offsetWidth >= carousel.scrollWidth - 5) {
+                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    carousel.scrollBy({ left: amount, behavior: 'smooth' });
+                }
+            }, carouselIntervalTime);
+        };
+
+        let carouselTimer = startCarouselAuto();
+
+        function resetCarouselAuto() {
+            clearInterval(carouselTimer);
+            carouselTimer = startCarouselAuto();
+        }
     }
 });
