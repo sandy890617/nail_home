@@ -4,50 +4,46 @@ document.addEventListener("DOMContentLoaded", function () {
     const modalText = document.getElementById('modalText');
     const modalContent = document.querySelector('.modal-content');
 
-    console.log("modal:", modal);
-    console.log("modal-content:", modalContent);
-    console.log("color items:", document.querySelectorAll('.color-item'));
-
-    // 點作品 → 開啟 modal
-    document.querySelectorAll('.color-item').forEach(item => {
-        item.addEventListener('click', () => {
-            modalImg.src = item.querySelector('img').src;
-            modalText.innerText = item.querySelector('p').innerText;
-            modal.style.display = "flex";
+    // 點作品小卡 → 開啟放大預覽
+    // 使用事件委託或重新綁定，確保切換分頁後點擊依然有效
+    function bindGalleryEvents() {
+        document.querySelectorAll('.color-item').forEach(item => {
+            // 先移除舊的監聽器避免重複綁定
+            item.onclick = function() {
+                modalImg.src = item.querySelector('img').src;
+                modalText.innerText = item.querySelector('p').innerText;
+                modal.style.display = "flex";
+                document.body.style.overflow = "hidden"; // 開啟時禁止背景捲動
+            };
         });
+    }
+
+    bindGalleryEvents();
+
+    // 點擊黑色背景 → 關閉預覽
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal || e.target.classList.contains('close-btn')) {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; // 恢復捲動
+        }
     });
 
-    // 點背景 → 關閉
-    modal.addEventListener('click', () => {
-        modal.style.display = "none";
-    });
-
-    // 點內容不關閉
+    // 點擊內容區塊不關閉
     modalContent.addEventListener('click', (e) => {
         e.stopPropagation();
     });
 });
 
-
 /**
- * 價目表分頁切換功能
- * @param {Event} evt - 點擊事件
- * @param {string} tabId - 欲顯示的區塊 ID
+ * 價目表分頁切換 (手部/足部/其他)
  */
 function openTab(evt, tabId) {
-    // 1. 取得所有內容區塊並隱藏
     const contents = document.querySelectorAll(".tab-content");
-    contents.forEach(content => {
-        content.classList.remove("active");
-    });
+    contents.forEach(content => content.classList.remove("active"));
 
-    // 2. 取得所有按鈕並移除 active 狀態
     const buttons = document.querySelectorAll(".tab-btn");
-    buttons.forEach(btn => {
-        btn.classList.remove("active");
-    });
+    buttons.forEach(btn => btn.classList.remove("active"));
 
-    // 3. 顯示目前被點擊的內容，並幫該按鈕加上 active
     const activeContent = document.getElementById(tabId);
     if (activeContent) {
         activeContent.classList.add("active");
@@ -55,18 +51,32 @@ function openTab(evt, tabId) {
     evt.currentTarget.classList.add("active");
 }
 
-/* 作品集 */
-
+/**
+ * 作品集分頁切換 (單色/貓眼/鏡面...)
+ * 修正重點：確保所有 gallery-content (包含單色) 都有被納入控制
+ */
 function switchGallery(evt, tabId) {
-    // 隱藏所有作品區內容
+    // 1. 取得所有帶有 gallery-content 類別的區塊
     const contents = document.querySelectorAll(".gallery-content");
-    contents.forEach(content => content.classList.remove("active"));
+    
+    // 2. 隱藏所有作品區塊
+    contents.forEach(content => {
+        content.classList.remove("active");
+        // 額外確保 display 狀態正確
+        content.style.display = "none"; 
+    });
 
-    // 取消所有按鈕的 active 狀態
+    // 3. 取消所有按鈕的 active 狀態
     const buttons = document.querySelectorAll(".gallery-tab-btn");
     buttons.forEach(btn => btn.classList.remove("active"));
 
-    // 顯示當前點擊的作品區，並標記按鈕
-    document.getElementById(tabId).classList.add("active");
+    // 4. 顯示目標區塊
+    const targetContent = document.getElementById(tabId);
+    if (targetContent) {
+        targetContent.classList.add("active");
+        targetContent.style.display = "block"; // 強制顯示
+    }
+
+    // 5. 標記當前按鈕
     evt.currentTarget.classList.add("active");
 }
