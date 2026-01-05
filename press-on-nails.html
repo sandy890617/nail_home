@@ -1,0 +1,64 @@
+<!-- 穿戴甲專區 -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="CSS/HydraFacial.css">
+	<link rel="stylesheet" href="CSS/press-on-nails.css">
+	<script src="JS/press-on-nails.js"></script>
+	<title>嚕咪美學｜美甲．韓式水飛梭．美甲教學</title>
+</head>
+<body>
+	 <nav class="navbar">
+	    <div class="nav-container">
+	        <a href="index.html" class="logo">嚕 咪 美 學</a>
+			
+			<!-- 手機/小螢幕版的"漢堡選單按鈕" -->
+	        <button class="menu-toggle" id="mobile-menu">
+	            <span class="bar"></span>	<!-- 漢堡的一條線 -->
+	            <span class="bar"></span>
+	            <span class="bar"></span>
+	        </button>
+	        
+	        <ul class="nav-links" id="nav-links">
+	            <li><a href="index.html">首頁</a></li>
+	            <li><a href="Manicure_service.html">美甲服務</a></li>
+	            <li><a href="HydraFacial.html">韓式精緻美學</a></li>
+	            <li><a href="press-on-nails.html">穿戴甲</a></li>
+	            <li><a href="#">關於我們</a></li>
+	            <li><a href="#" class="nav-cta">立即預約</a></li>
+	        </ul>
+    	</div>
+	</nav>
+	
+	<div class="product-grid">
+	    <div class="product-card" onclick="openModal('法式珍珠', 'NT$ 880', '這款採用天然貝殼粉，適合婚禮與日常穿搭。', 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=500')">
+	        <div class="image-container">
+	            <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=500" alt="item">
+	        </div>
+	        <div class="product-name">法式珍珠</div>
+	        <div class="product-price">NT$ 880</div>
+	    </div>
+	
+	    <div class="product-card" onclick="openModal('極光貓眼', 'NT$ 1,280', '隨著光線變幻的貓眼效果，貴氣十足。', 'https://images.unsplash.com/photo-1604654894610-df490c81726a?w=500')">
+	        <div class="image-container">
+	            <img src="https://images.unsplash.com/photo-1604654894610-df490c81726a?w=500" alt="item">
+	        </div>
+	        <div class="product-name">極光貓眼</div>
+	        <div class="product-price">NT$ 1,280</div>
+	    </div>
+	</div>
+
+	<div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+	    <div class="modal-content" onclick="event.stopPropagation()">
+	        <span class="close-btn" onclick="closeModal()">&times;</span>
+	        <img id="modalImg" class="modal-image" src="" alt="Detail">
+	        <h2 id="modalTitle">商品名稱</h2>
+	        <p id="modalPrice" style="color: #8c7e74;"></p>
+	        <p id="modalDesc">這裡顯示詳細的描述文字...</p>
+	        <button style="background: var(--brand-color); color: white; border: none; padding: 10px 30px; cursor: pointer; margin-top: 20px;">立即下單</button>
+	    </div>
+	</div>
+
+</body>
+</html>
